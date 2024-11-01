@@ -2,10 +2,25 @@ const express = require ('express');
 const app = express(); 
 
 
-app.get("/user/:userId", (req, res) =>{
-  console.log(req.query)
-  res.send({firstname: "Gaurav", lastname: "Tomar"})
-})
+app.use(
+  "/user", 
+  (req, res, next) =>{
+  console.log("1st Response");
+  // res.send({firstname: "Gaurav", lastname: "Tomar"});
+  next();
+},
+(req, res, next)=>{
+  // res.send("2nd Response!")
+  next();
+},
+(req, res, next)=>{
+  // res.send("3nd Response!")
+  next();
+},
+(req, res, next)=>{
+  res.send("4nd Response!")
+}
+)
 
 
 
